@@ -1,0 +1,123 @@
+.app{
+    background-color: rgb(75, 201, 132);
+    height: 90vh;
+}
+
+.card {
+    height: 80%;
+    margin-top: 50px;
+    width: 40%;
+    margin-left: 100px;
+    margin-right: 100px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+  .player {
+    left: 0;
+    /* width: 60%; */
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.945);
+  }
+  
+  .computer {
+    right: 0;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.938);
+  }
+  .name{
+    margin-top: 50px;
+    text-align: center;
+    font-size: 35px
+  }
+
+  .ScoreBox{
+    text-align: center;
+    border: 1px solid rgb(238, 0, 167);
+    width: 20%;
+    margin: 0 auto 
+  }
+  
+  .computer span {
+    font-size: 30px;
+    color: rgb(255, 0, 179);
+    height: 0;
+  }
+
+  .player span {
+    font-size: 30px;
+    color: rgb(255, 0, 179)
+  }
+
+  .ScoreBox p {
+    font-size: 25px
+  }
+
+  .ScoreBox p span{
+    font-size: 35px;
+    color:  rgb(238, 0, 167);
+  }
+  
+  .actioBtn{
+     width: 20%;
+     margin: 0 auto;
+     margin-top: 110px;
+  }
+
+  .actioBtn button{
+    width: 120px;
+    padding: 10px 0;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    font-size: 15px;
+    color: rgb(226, 29, 150);
+    font-weight: 900;
+    border: 1px solid rgb(255, 0, 157)
+  }
+  .centered .diceIcon{
+    position: absolute;
+    width: 10%;
+    height: 5%;
+    z-index: 2;
+    top: 40%;
+    left: 50%;
+    border-radius: 10px;
+    /* border: 1px solid rgb(238, 0, 167); */
+    padding: 40px 50px;
+    border: 10px;
+    background-color: rgb(255, 255, 255);
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  .diceIcon img{
+      width: 50px;
+      height: 50px;
+  }
+
+
+
+  .inActive {
+    background-color: rgb(221, 221, 213);
+  }
+  
+  .centered .rollBtn{
+    position: absolute;
+    z-index: 2;
+    top: 70%;
+    left: 50%;
+    /* border: 1px solid rgb(238, 0, 167); */
+    padding: 40px 50px;
+    /* background-color: rgb(255, 255, 255); */
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .rollBtn p {
+    background-color: #fff;
+    padding: 10px 10px;
+    border: 4px dotted rgb(6, 248, 155);
+    color: rgb(241, 0, 129)
+  }
