@@ -10,7 +10,11 @@
 </head>
 <body>
     <div id="app">
-          <two-player></two-player>
+        <chose-game-type :chosen="gameTypeChosen"  @chose-one-player="handleSinglePlayerChosen" @chose-two-player="handleTwoPlayerChosen"></chose-game-type>
+        <single-player-form v-show="singlePlayer"> <!-- <two-player v-show="gameStarted"></two-player> -->
+        </single-player-form>
+        <two-player-form v-show="twoPlayer"></two-player-form>
+        <!-- <one-player v-show="twoPlayer"></one-player> -->
           
     </div>
     <script src="./script.js"></script>
