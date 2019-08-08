@@ -2,9 +2,11 @@ var eventBus = new Vue ()
 
 Vue.component("chose-game-type", {
     template: `
-        <div>
-            <button v-show="!chosen" @click="choseOnePlayer">Single Player</button>
-            <button v-show="!chosen" @click="choseTwoPlayer ">Two Player</button>
+        <div class="chose-game">
+            <div class="game-type">
+                <button v-show="!chosen" @click="choseOnePlayer">Single Player</button>
+                <button v-show="!chosen" @click="choseTwoPlayer ">Two Player</button>
+            </div>   
         </div>
         
     `,
@@ -110,7 +112,7 @@ Vue.component("one-player",{
                 </div>
 
                 <div class="rollBtn">
-                    <button :disabled="gameEnded"  @click="rollDice" type="submit">Roll Dice</button>
+                    <button :disabled="gameEnded"  @click="playGame" type="submit">Roll Dice</button>
                     <button @click="restart" type="submit">restart</button>
                     <p>Winner is: {{winner}}</p>
                     
@@ -139,6 +141,7 @@ Vue.component("one-player",{
             computerPlying: false,
             playerCount: 0,
             computerCount: 0,
+            
             totalDice: 0,
             dice1: 0,
             dice2: 0,
@@ -148,6 +151,25 @@ Vue.component("one-player",{
         }
     },
     methods: {
+        playGame (){
+            let play = 0;
+            while (play < 2){
+                if( play === 0){
+                    console.log('player play')
+                    this.rollDice()
+                }else {
+                    setTimeout( () => {
+                        console.log('computer play')
+                        this.rollDice(player)
+                        return;
+                    }, 2000) 
+                    
+                }
+                play ++
+            }
+        },
+        
+
         restart(){
             this.playerScore = 0
             this.dealerScore = 0
@@ -161,7 +183,7 @@ Vue.component("one-player",{
 
 
         gameStarted (){
-            this.playerPlying = false
+            this.playerPlying = true
         },
         rollDice(){
             this.dice1 = Math.floor(Math.random() * 6) +1
@@ -170,7 +192,7 @@ Vue.component("one-player",{
             this.dice2Image = `./images/dice-${this.dice2}.png`
             // this.totalDice += this.dice1 + this.dice2;
             // this.roll += 1
-            if(this.player1Plying){
+            if(this.playerPlying){
                 this.playerCount +=1;
                 this.playerScore += this.dice1 + this.dice2
                 this.playerPlying = false
@@ -207,7 +229,8 @@ Vue.component("one-player",{
     mounted(){
         this.gameStarted()
         // console.log(this.name)
-        // if(this.playerPlying = false){
+        // if(this.computerPlying){
+        //     alert('is computer turn')
         //     this.rollDice()
         //     this.playerPlying = true
         // }
@@ -215,9 +238,10 @@ Vue.component("one-player",{
             this.playerName = PlayerName 
             // console.log(this.name)
         })
-    }
+    },
+    
 })
-
+ 
 
 
 
