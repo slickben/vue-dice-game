@@ -5,21 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dice Game</title>
-    <script src="/vue.js"></script>
-    <link rel="stylesheet" href="/App/styles.css">
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="./vue.js"></script>
+    <link rel="stylesheet" href="./styles.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="app">
         <div v-show="!gameTypeChosen" class="game-type">
-            <button  @click="handleSinglePlayerChosen">Single Player</button>
-            <button  @click="handleTwoPlayerChosen">Two Player</button>
+            <button  @click="handlePlayerChosen(gameType.single)">Single Player</button>
+            <button  @click="handlePlayerChosen(gameType.double)">Two Player</button>
         </div> 
         <div class="app"  v-show="gameTypeChosen">
-            <player-one :score="players[0].Score"></player-one>
+            <player>
+                <div class="card player">
+                    <div class="name">
+                        <p>{{ players[0].name}}<span>.</span></p>
+                    </div> 
+                    <div class="ScoreBox">
+                        <p> Score:<span>{{players[0].Score}}</span></p>
+                    </div>
+                    <div class="actioBtn">
+                        <h4 v-show="player1Playing">Playing</h4>
+                    </div>
+                </div>
+            </player>
+            <player  v-if="twoPlayer">
+                <div class="card computer">
+                    <div class="name">
+                        <p>{{players[1].name}}<span >.</span></p>
+                    </div> 
+                    <div class="ScoreBox">
+                        <p> Score: <span>{{players[1].Score}}</span></p>
+                    </div>
+                    <div class="actioBtn">
+                        <h4 v-show="player2Playing">Playing</h4>
+                    </div>
+                </div>
+                
+            </player>
+            <player v-if="singlePlayer">
+                <div class="card computer">
+                    <div class="name">
+                        <p> Sysem <span>.</span></p>
+                    </div> 
+                    <div class="ScoreBox">
+                        <p> Score: <span>{{computer.Score}}</span></p>
+                    </div>
+                    <div class="actioBtn">
+                        <h4 v-show="systemPlaying">  System thinking</h4>
+                    </div>
+                </div>
+            </player>
             <div class="centered ">
                 <div class="diceIcon">
                     <div>
@@ -30,24 +69,17 @@
 
                 <div class="rollBtn">
                     <button @click="playGame" :disabled="gameEnded" type="submit">Roll Dice</button>
-                    <button  type="submit">restart</button>
+                    <button @click="restartGame"  type="submit">restart</button>
                     <p>Winner is: {{winner}}</p>
                     
                 </div>
             </div>
-            <player-two :score="players[1].Score" v-if="twoPlayer" ></player-two>
-            <system :score="computer.Score" :alert="alert" :method="playGame" v-if="singlePlayer"></system> 
+            <name-form :status="twoPlayer"></name-form>
+
         </div>
-        
-        <!-- <chose-game-type :chosen="gameTypeChosen"  @chose-one-player="handleSinglePlayerChosen" @chose-two-player="handleTwoPlayerChosen"></chose-game-type>
-        <single-player-form v-show="singlePlayer"> -->
-             <!-- <two-player v-show="gameStarted"></two-player> -->
-        <!-- </single-player-form>
-        <two-player-form v-show="twoPlayer"></two-player-form> -->
-        <!-- <one-player v-show="twoPlayer"></one-player> -->
+    
           
     </div>
     <script src="/App/script1.js"></script>
-    <!-- <script src="./script.js"></script> -->
 </body>
 </html>
